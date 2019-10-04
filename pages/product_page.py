@@ -24,6 +24,7 @@ class ProductPage(BasePage):
         self.solve_quiz_and_get_code()
         self.should_be_show_add_text()
         self.should_be_right_price()
+        self.should_be_right_name()
 
     def should_be_click_button(self):
         assert self.is_element_present(*ProductPageLocators.ADD_BUTTON), "add_button is not presented"
@@ -40,7 +41,14 @@ class ProductPage(BasePage):
         price = self.browser.find_element(*ProductPageLocators.PRICE).text
         assert self.is_element_present(*ProductPageLocators.BASKET_PRICE), "basket_price is not presented"
         basket_price = self.browser.find_element(*ProductPageLocators.BASKET_PRICE).text
-        assert price == basket_price, f"product {price} is not equal {basket_price}"
+        assert price == basket_price, f"product price: {price} is not equal {basket_price}"
+
+    def should_be_right_name(self):
+        assert self.is_element_present(*ProductPageLocators.PRODUCT_NAME), "product name is not presented"
+        product_name = self.browser.find_element(*ProductPageLocators.PRODUCT_NAME).text
+        assert self.is_element_present(*ProductPageLocators.PRODUCT_ADDED_NAME), "added product name is not presented"
+        product_added_name = self.browser.find_element(*ProductPageLocators.PRODUCT_ADDED_NAME).text
+        assert product_name == product_added_name, f"product name: {product_name} is not equal {product_added_name}"
 
     def solve_quiz_and_get_code(self):
         alert = self.browser.switch_to.alert

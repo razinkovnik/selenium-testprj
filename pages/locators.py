@@ -16,3 +16,5 @@ class ProductPageLocators:
     TEXT_PRODUCT_ADDED = (By.CSS_SELECTOR, "#messages > div:nth-child(1)")
     PRICE = (By.CSS_SELECTOR, "p.price_color")
     BASKET_PRICE = (By.CSS_SELECTOR, ".alert-info strong")
+    PRODUCT_ADDED_NAME = (By.CSS_SELECTOR, "#messages > div:nth-child(1) strong")
+    PRODUCT_NAME = (By.CSS_SELECTOR, ".product_page h1")
