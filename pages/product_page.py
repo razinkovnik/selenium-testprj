@@ -74,3 +74,12 @@ class ProductPage(BasePage):
     def should_disappeared_success_message(self):        
         assert self.is_disappeared(*ProductPageLocators.SUCCESS_MESSAGE), \
             "Success message is not disappeared"
+
+    def should_not_be_basket_items(self):        
+        assert self.is_not_element_present(*ProductPageLocators.BASKET_ITEMS), \
+            "Basket items is presented, but should not be"
+
+    def should_be_empty_basket_message(self):
+        assert self.is_element_present(*ProductPageLocators.BASKET_EMPTY_MESSAGE), "empty basket message is not presented"
+        message = self.browser.find_element(*ProductPageLocators.BASKET_EMPTY_MESSAGE).text
+        assert "корзина пуста" in message, "empty basket message is not presented"
