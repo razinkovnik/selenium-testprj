@@ -4,7 +4,6 @@ from pages.login_page import LoginPage
 from pages.product_page import ProductPage
 import time
 
-@pytest.mark.skip
 class TestLoginFromMainPage():
     def test_guest_can_go_to_login_page(self, browser):
         link = "http://selenium1py.pythonanywhere.com"
@@ -20,7 +19,6 @@ class TestLoginFromMainPage():
         page.open()
         page.should_be_add_product_to_basket()
 
-@pytest.mark.skip
 def test_guest_cant_see_product_in_basket_opened_from_main_page(browser):
     link = "http://selenium1py.pythonanywhere.com/"
     page = MainPage(browser, link)

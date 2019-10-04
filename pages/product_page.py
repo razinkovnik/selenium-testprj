@@ -33,7 +33,7 @@ class ProductPage(BasePage):
     def should_be_show_success_message(self):
         assert self.is_element_present(*ProductPageLocators.SUCCESS_MESSAGE), "text_added is not presented"
         text_added = self.browser.find_element(*ProductPageLocators.SUCCESS_MESSAGE)
-        assert "был добавлен в вашу корзину" in text_added.text, "product is not in basket"
+        assert "has been added to your basket" in text_added.text, "product is not in basket"
     
     def should_be_right_price(self):
         assert self.is_element_present(*ProductPageLocators.PRICE), "price is not presented"
@@ -82,4 +82,5 @@ class ProductPage(BasePage):
     def should_be_empty_basket_message(self):
         assert self.is_element_present(*ProductPageLocators.BASKET_EMPTY_MESSAGE), "empty basket message is not presented"
         message = self.browser.find_element(*ProductPageLocators.BASKET_EMPTY_MESSAGE).text
-        assert "корзина пуста" in message, "empty basket message is not presented"
+        time.sleep(60)
+        assert "Your basket is empty" in message, "empty basket message is not presented"
