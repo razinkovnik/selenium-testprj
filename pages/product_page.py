@@ -20,9 +20,8 @@ def solve_quiz_and_get_code(self):
 
 class ProductPage(BasePage):
     def should_be_add_product_to_basket(self):
-        self.should_be_click_button()
-        self.solve_quiz_and_get_code()
-        self.should_be_show_add_text()
+        self.add_product_to_basket()
+        self.should_be_show_success_message()
         self.should_be_right_price()
         self.should_be_right_name()
 
@@ -31,9 +30,9 @@ class ProductPage(BasePage):
         button = self.browser.find_element(*ProductPageLocators.ADD_BUTTON)
         button.click()
     
-    def should_be_show_add_text(self):
-        assert self.is_element_present(*ProductPageLocators.TEXT_PRODUCT_ADDED), "text_added is not presented"
-        text_added = self.browser.find_element(*ProductPageLocators.TEXT_PRODUCT_ADDED)
+    def should_be_show_success_message(self):
+        assert self.is_element_present(*ProductPageLocators.SUCCESS_MESSAGE), "text_added is not presented"
+        text_added = self.browser.find_element(*ProductPageLocators.SUCCESS_MESSAGE)
         assert "был добавлен в вашу корзину" in text_added.text, "product is not in basket"
     
     def should_be_right_price(self):
@@ -63,3 +62,15 @@ class ProductPage(BasePage):
             alert.accept()
         except NoAlertPresentException:
             print("No second alert presented")
+
+    def add_product_to_basket(self):
+        self.should_be_click_button()
+        self.solve_quiz_and_get_code()
+    
+    def should_not_be_success_message(self):        
+        assert self.is_not_element_present(*ProductPageLocators.SUCCESS_MESSAGE), \
+            "Success message is presented, but should not be"
+            
+    def should_disappeared_success_message(self):        
+        assert self.is_disappeared(*ProductPageLocators.SUCCESS_MESSAGE), \
+            "Success message is not disappeared"
